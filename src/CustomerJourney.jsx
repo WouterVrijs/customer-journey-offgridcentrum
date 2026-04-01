@@ -605,7 +605,7 @@ export default function CustomerJourney() {
   const phase = phases[selectedPhase];
 
   return (
-    <div style={{ fontFamily: "'Cera Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", maxWidth: "960px", margin: "0 auto", padding: "24px" }}>
+    <div style={{ fontFamily: "'Cera Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", maxWidth: "1400px", margin: "0 auto", padding: "24px 40px" }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: "32px" }}>
         <h1 style={{ fontSize: "28px", fontWeight: 800, color: brand.green950, margin: "0 0 4px 0" }}>
