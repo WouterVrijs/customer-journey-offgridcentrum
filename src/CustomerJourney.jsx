@@ -5,8 +5,8 @@ const phases = [
     id: "awareness",
     label: "Bewustwording",
     icon: "💡",
-    color: "#F59E0B",
-    bgLight: "#FEF3C7",
+    color: "#71967A",
+    bgLight: "#E0ECE4",
     description: "Klant realiseert behoefte aan energie-onafhankelijkheid",
     touchpoints: [
       // --- Betaalde kanalen ---
@@ -65,8 +65,8 @@ const phases = [
     id: "education",
     label: "Orientatie & Educatie",
     icon: "📚",
-    color: "#3B82F6",
-    bgLight: "#DBEAFE",
+    color: "#5A7D63",
+    bgLight: "#E0ECE4",
     description: "Klant leert over systeemtypes en mogelijkheden",
     touchpoints: [
       // --- Systeemuitleg pagina's ---
@@ -135,8 +135,8 @@ const phases = [
     id: "calculator",
     label: "Calculator & Configuratie",
     icon: "🔧",
-    color: "#8B5CF6",
-    bgLight: "#EDE9FE",
+    color: "#476350",
+    bgLight: "#E0ECE4",
     description: "Klant berekent welk systeem bij zijn situatie past",
     touchpoints: [
       // --- Calculator flow (5 stappen) ---
@@ -203,8 +203,8 @@ const phases = [
     id: "consultation",
     label: "Advies & Offerte",
     icon: "🤝",
-    color: "#10B981",
-    bgLight: "#D1FAE5",
+    color: "#314B3A",
+    bgLight: "#E0ECE4",
     description: "Persoonlijk adviesgesprek en maatwerk offerte",
     touchpoints: [
       // --- Eerste contact & aanvraag ---
@@ -280,8 +280,8 @@ const phases = [
     id: "installation",
     label: "Installatie & Oplevering",
     icon: "⚡",
-    color: "#F97316",
-    bgLight: "#FFF7ED",
+    color: "#314B3A",
+    bgLight: "#E0ECE4",
     description: "Professionele installatie en systeem in gebruik nemen",
     touchpoints: [
       // --- Pre-installatie (wachttijd na akkoord) ---
@@ -360,8 +360,8 @@ const phases = [
     id: "retention",
     label: "Retentie & Ambassadeurschap",
     icon: "🌟",
-    color: "#EC4899",
-    bgLight: "#FCE7F3",
+    color: "#71967A",
+    bgLight: "#E0ECE4",
     description: "Klant wordt terugkerende klant en ambassadeur",
     touchpoints: [
       // --- Doorlopende service & ondersteuning ---
@@ -447,38 +447,68 @@ const phases = [
   },
 ];
 
+/* ─── Off-Gridcentrum huisstijl kleuren ─── */
+const brand = {
+  green400: "#71967A",
+  green700: "#314B3A",
+  green950: "#121C16",
+  koromiko: "#FFBD58",
+  /* Afgeleide tinten */
+  green50:  "#F2F7F4",
+  green100: "#E0ECE4",
+  green200: "#C3DACC",
+  green300: "#9BC2A9",
+  green800: "#233429",
+  koromiko50: "#FFF8EC",
+  koromiko100: "#FFEED0",
+};
+
 const statusConfig = {
-  active: { label: "Actief", color: "#10B981", bg: "#D1FAE5" },
-  in_progress: { label: "In ontwikkeling", color: "#F59E0B", bg: "#FEF3C7" },
-  missing: { label: "Ontbreekt", color: "#EF4444", bg: "#FEE2E2" },
-  passive: { label: "Passief", color: "#6B7280", bg: "#F3F4F6" },
-  unknown: { label: "Onbekend", color: "#6B7280", bg: "#F3F4F6" },
+  active: { label: "Actief", color: brand.green700, bg: brand.green100 },
+  in_progress: { label: "In ontwikkeling", color: "#9A6B1A", bg: brand.koromiko100 },
+  missing: { label: "Ontbreekt", color: "#9B2C2C", bg: "#FDE8E8" },
+  passive: { label: "Passief", color: brand.green400, bg: brand.green50 },
+  unknown: { label: "Onbekend", color: brand.green400, bg: brand.green50 },
 };
 
 const priorityConfig = {
-  high: { label: "Hoog", color: "#EF4444" },
-  medium: { label: "Medium", color: "#F59E0B" },
-  low: { label: "Laag", color: "#6B7280" },
+  high: { label: "Hoog", color: "#C53030" },
+  medium: { label: "Medium", color: "#B7791F" },
+  low: { label: "Laag", color: brand.green400 },
 };
 
-function PhaseCard({ phase, isSelected, onClick }) {
+function PhaseCard({ phase, index, isSelected, onClick }) {
   return (
     <div
       onClick={onClick}
       style={{
-        padding: "14px 12px",
+        padding: "14px 16px",
         borderRadius: "12px",
-        border: isSelected ? `2px solid ${phase.color}` : "2px solid #E5E7EB",
-        backgroundColor: isSelected ? phase.bgLight : "#FFFFFF",
+        border: isSelected ? `2px solid ${brand.koromiko}` : `2px solid ${brand.green200}`,
+        backgroundColor: isSelected ? brand.koromiko50 : "#FFFFFF",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        minWidth: "120px",
+        minWidth: "130px",
         textAlign: "center",
-        boxShadow: isSelected ? `0 4px 12px ${phase.color}33` : "0 1px 3px rgba(0,0,0,0.1)",
+        boxShadow: isSelected ? `0 4px 16px ${brand.koromiko}44` : "0 1px 3px rgba(18,28,22,0.08)",
       }}
     >
-      <div style={{ fontSize: "24px", marginBottom: "4px" }}>{phase.icon}</div>
-      <div style={{ fontWeight: 700, fontSize: "11px", color: phase.color, lineHeight: "1.3" }}>{phase.label}</div>
+      <div style={{
+        width: "32px",
+        height: "32px",
+        borderRadius: "50%",
+        backgroundColor: isSelected ? brand.koromiko : brand.green400,
+        color: isSelected ? brand.green950 : "#FFFFFF",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "14px",
+        fontWeight: 700,
+        margin: "0 auto 6px",
+      }}>
+        {index + 1}
+      </div>
+      <div style={{ fontWeight: 700, fontSize: "11px", color: isSelected ? brand.green950 : brand.green700, lineHeight: "1.3" }}>{phase.label}</div>
     </div>
   );
 }
@@ -531,10 +561,10 @@ function SummaryBar() {
     })
   );
   const items = [
-    { label: "Totaal touchpoints", value: totalTouchpoints, color: "#1F2937" },
-    { label: "Actief", value: counts.active, color: "#10B981" },
-    { label: "In ontwikkeling", value: counts.in_progress, color: "#F59E0B" },
-    { label: "Ontbreekt", value: counts.missing, color: "#EF4444" },
+    { label: "Totaal touchpoints", value: totalTouchpoints, color: brand.green950 },
+    { label: "Actief", value: counts.active, color: brand.green700 },
+    { label: "In ontwikkeling", value: counts.in_progress, color: "#9A6B1A" },
+    { label: "Ontbreekt", value: counts.missing, color: "#9B2C2C" },
   ];
   return (
     <div
@@ -542,7 +572,7 @@ function SummaryBar() {
         display: "flex",
         gap: "24px",
         padding: "16px 24px",
-        backgroundColor: "#F9FAFB",
+        backgroundColor: brand.green100,
         borderRadius: "12px",
         marginBottom: "24px",
         flexWrap: "wrap",
@@ -552,7 +582,7 @@ function SummaryBar() {
       {items.map((item) => (
         <div key={item.label} style={{ textAlign: "center" }}>
           <div style={{ fontSize: "24px", fontWeight: 800, color: item.color }}>{item.value}</div>
-          <div style={{ fontSize: "11px", color: "#6B7280", fontWeight: 500 }}>{item.label}</div>
+          <div style={{ fontSize: "11px", color: brand.green400, fontWeight: 500 }}>{item.label}</div>
         </div>
       ))}
     </div>
@@ -575,14 +605,14 @@ export default function CustomerJourney() {
   const phase = phases[selectedPhase];
 
   return (
-    <div style={{ fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif", maxWidth: "960px", margin: "0 auto", padding: "24px" }}>
+    <div style={{ fontFamily: "'Cera Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", maxWidth: "960px", margin: "0 auto", padding: "24px" }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: "32px" }}>
-        <h1 style={{ fontSize: "28px", fontWeight: 800, color: "#1F2937", margin: "0 0 4px 0" }}>
+        <h1 style={{ fontSize: "28px", fontWeight: 800, color: brand.green950, margin: "0 0 4px 0" }}>
           Customer Journey Map
         </h1>
-        <p style={{ fontSize: "15px", color: "#6B7280", margin: "0 0 2px 0" }}>Off-Gridcentrum — Maart 2026</p>
-        <p style={{ fontSize: "12px", color: "#9CA3AF", margin: 0 }}>Consultatie & installatie model · Victron Energy specialist · High-ticket (€3.000 – €15.000+)</p>
+        <p style={{ fontSize: "15px", color: brand.green700, margin: "0 0 2px 0" }}>Off-Gridcentrum — Maart 2026</p>
+        <p style={{ fontSize: "12px", color: brand.green400, margin: 0 }}>Consultatie & installatie model · Victron Energy specialist · High-ticket (€3.000 – €15.000+)</p>
       </div>
 
       {/* Summary */}
@@ -602,9 +632,9 @@ export default function CustomerJourney() {
       >
         {phases.map((p, i) => (
           <div key={p.id} style={{ display: "flex", alignItems: "center" }}>
-            <PhaseCard phase={p} isSelected={selectedPhase === i} onClick={() => setSelectedPhase(i)} />
+            <PhaseCard phase={p} index={i} isSelected={selectedPhase === i} onClick={() => setSelectedPhase(i)} />
             {i < phases.length - 1 && (
-              <div style={{ color: "#D1D5DB", fontSize: "18px", margin: "0 2px", flexShrink: 0 }}>→</div>
+              <div style={{ color: brand.green200, fontSize: "18px", margin: "0 2px", flexShrink: 0 }}>→</div>
             )}
           </div>
         ))}
@@ -615,20 +645,34 @@ export default function CustomerJourney() {
         style={{
           backgroundColor: "#FFFFFF",
           borderRadius: "16px",
-          border: `2px solid ${phase.color}22`,
-          boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+          border: `2px solid ${brand.green200}`,
+          boxShadow: "0 4px 24px rgba(18,28,22,0.06)",
           overflow: "hidden",
         }}
       >
         {/* Phase header */}
-        <div style={{ padding: "24px", backgroundColor: phase.bgLight, borderBottom: `2px solid ${phase.color}22` }}>
+        <div style={{ padding: "24px", backgroundColor: brand.green100, borderBottom: `2px solid ${brand.green200}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "8px" }}>
-            <span style={{ fontSize: "32px" }}>{phase.icon}</span>
+            <div style={{
+              width: "44px",
+              height: "44px",
+              borderRadius: "50%",
+              backgroundColor: brand.green700,
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "18px",
+              fontWeight: 700,
+              flexShrink: 0,
+            }}>
+              {selectedPhase + 1}
+            </div>
             <div>
-              <h2 style={{ fontSize: "22px", fontWeight: 800, color: phase.color, margin: 0 }}>
+              <h2 style={{ fontSize: "22px", fontWeight: 800, color: brand.green950, margin: 0 }}>
                 {phase.label}
               </h2>
-              <p style={{ fontSize: "14px", color: "#4B5563", margin: "2px 0 0 0" }}>{phase.description}</p>
+              <p style={{ fontSize: "14px", color: brand.green700, margin: "2px 0 0 0" }}>{phase.description}</p>
             </div>
           </div>
           <div
@@ -637,14 +681,14 @@ export default function CustomerJourney() {
               padding: "10px 16px",
               backgroundColor: "#FFFFFF",
               borderRadius: "8px",
-              borderLeft: `4px solid ${phase.color}`,
+              borderLeft: `4px solid ${brand.koromiko}`,
             }}
           >
-            <div style={{ fontSize: "12px", color: "#6B7280", marginBottom: "2px" }}>De klant denkt:</div>
-            <div style={{ fontSize: "15px", fontStyle: "italic", color: "#1F2937", fontWeight: 500 }}>
+            <div style={{ fontSize: "12px", color: brand.green400, marginBottom: "2px" }}>De klant denkt:</div>
+            <div style={{ fontSize: "15px", fontStyle: "italic", color: brand.green950, fontWeight: 500 }}>
               {phase.klantVraag}
             </div>
-            <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: "4px" }}>
+            <div style={{ fontSize: "12px", color: brand.green400, marginTop: "4px" }}>
               Emotie: {phase.emotions}
             </div>
           </div>
@@ -654,7 +698,7 @@ export default function CustomerJourney() {
         <div style={{ padding: "24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
           {/* Left column: Touchpoints */}
           <div>
-            <Section title="Touchpoints" color={phase.color}>
+            <Section title="Touchpoints" color={brand.green700}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {phase.touchpoints.map((tp, i) => (
                   <div
@@ -664,14 +708,14 @@ export default function CustomerJourney() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       padding: "8px 12px",
-                      backgroundColor: "#F9FAFB",
+                      backgroundColor: brand.green50,
                       borderRadius: "8px",
                       fontSize: "13px",
                     }}
                   >
                     <div style={{ display: "flex", alignItems: "center", minWidth: 0, flex: 1, marginRight: "8px" }}>
                       <PriorityDot priority={tp.priority} />
-                      <span style={{ color: "#1F2937", overflow: "hidden", textOverflow: "ellipsis" }}>{tp.name}</span>
+                      <span style={{ color: brand.green950, overflow: "hidden", textOverflow: "ellipsis" }}>{tp.name}</span>
                     </div>
                     <StatusBadge status={tp.status} />
                   </div>
@@ -679,17 +723,17 @@ export default function CustomerJourney() {
               </div>
             </Section>
 
-            <Section title={phase.kpiLabel} color={phase.color}>
+            <Section title={phase.kpiLabel} color={brand.green700}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                 {phase.kpis.map((kpi, i) => (
                   <span
                     key={i}
                     style={{
                       padding: "4px 10px",
-                      backgroundColor: phase.bgLight,
+                      backgroundColor: brand.green100,
                       borderRadius: "6px",
                       fontSize: "12px",
-                      color: phase.color,
+                      color: brand.green700,
                       fontWeight: 500,
                     }}
                   >
@@ -702,7 +746,7 @@ export default function CustomerJourney() {
 
           {/* Right column: Gaps & Opportunities */}
           <div>
-            <Section title="Knelpunten & Gaps" color="#EF4444">
+            <Section title="Knelpunten & Gaps" color="#9B2C2C">
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                 {phase.gaps.map((gap, i) => (
                   <div
@@ -712,10 +756,10 @@ export default function CustomerJourney() {
                       alignItems: "flex-start",
                       gap: "8px",
                       padding: "8px 12px",
-                      backgroundColor: "#FEF2F2",
+                      backgroundColor: "#FDE8E8",
                       borderRadius: "8px",
                       fontSize: "13px",
-                      color: "#991B1B",
+                      color: "#9B2C2C",
                       lineHeight: "1.4",
                     }}
                   >
@@ -726,7 +770,7 @@ export default function CustomerJourney() {
               </div>
             </Section>
 
-            <Section title="Kansen & Quick Wins" color="#10B981">
+            <Section title="Kansen & Quick Wins" color={brand.green700}>
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                 {phase.opportunities.map((opp, i) => (
                   <div
@@ -736,14 +780,14 @@ export default function CustomerJourney() {
                       alignItems: "flex-start",
                       gap: "8px",
                       padding: "8px 12px",
-                      backgroundColor: "#F0FDF4",
+                      backgroundColor: brand.green50,
                       borderRadius: "8px",
                       fontSize: "13px",
-                      color: "#166534",
+                      color: brand.green700,
                       lineHeight: "1.4",
                     }}
                   >
-                    <span style={{ flexShrink: 0 }}>+</span>
+                    <span style={{ flexShrink: 0, color: brand.koromiko }}>+</span>
                     <span>{opp}</span>
                   </div>
                 ))}
@@ -762,19 +806,19 @@ export default function CustomerJourney() {
           marginTop: "20px",
           flexWrap: "wrap",
           fontSize: "12px",
-          color: "#6B7280",
+          color: brand.green400,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#EF4444", display: "inline-block" }} />
+          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#C53030", display: "inline-block" }} />
           Hoge prioriteit
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#F59E0B", display: "inline-block" }} />
+          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#B7791F", display: "inline-block" }} />
           Medium prioriteit
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#6B7280", display: "inline-block" }} />
+          <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: brand.green400, display: "inline-block" }} />
           Lage prioriteit
         </div>
       </div>
